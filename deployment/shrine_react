@@ -1,0 +1,30 @@
+FROM ubuntu:20.04
+
+ENV TZ=Asia/Kolkata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get -y update && \ 
+    apt-get install curl gnupg2 -y && \
+    apt-get install npm -y
+RUN npm install -g create-react-app --save
+RUN npm install axios --save 
+RUN npm install react-bootstrap bootstrap@3 --save   
+#RUN npm install react-router-dom --save
+RUN npm install react-router-dom@5.2 --save
+
+WORKDIR /
+
+RUN create-react-app frontend
+
+WORKDIR /frontend/
+
+RUN rm -rf src
+COPY frontend/src src
+# RUN ls
+# RUN rm App.js index.js
+# COPY front_end/src/App.js App.js
+# COPY front_end/src/index.js index.js
+# COPY front_end/src/ProductContext.js ProductContext.js
+# COPY front_end/src/components components
+
+CMD ["npm","start"]

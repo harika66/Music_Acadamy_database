@@ -1,0 +1,16 @@
+FROM asdkant/fastapi-hello-world
+
+RUN pip3 install mysql-connector-python
+RUN pip3 install sqlalchemy
+RUN apt update
+RUN apt install nmap -y
+COPY tools/check_service.sh /
+RUN chmod +x /check_service.sh
+COPY backend/app/* /app/
+
+CMD /check_service.sh shrine_mysql 3306; /start.sh
+
+
+
+
+

@@ -1,0 +1,25 @@
+FROM python:3.7-alpine
+MAINTAINER Gopika Jayadev <higopika@gmail.com>
+
+RUN pip3 install --no-cache-dir \
+        pytest \
+        pytest-cov \
+        requests \
+        jsonpath
+
+RUN apk update && \
+    apk upgrade && \
+    apk add bash && \
+    apk add nmap
+
+RUN mkdir -p /test
+
+WORKDIR /
+
+COPY ./tests/test_shrine.py /test
+COPY ./tests/add_student.json /test
+COPY tools/check_service.sh /
+RUN chmod +x /check_service.sh
+
+CMD /check_service.sh shrine_fastapi 80; pytest /test
+
