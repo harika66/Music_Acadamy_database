@@ -16,10 +16,8 @@ function App() {
       <Router>
         <ProductProvider>
           <NavBar />
-            <Routes>
-              { <Route exact path='/students' component={ProductsTable} /> } 
-              { <Route exact path='/students' component={ProductsRow} /> } 
-            </Routes>
+              <Route exact path='/students' component={ProductsTable} />  
+              <Route exact path='/students' component={ProductsRow} />  
         </ProductProvider>
       </Router>
     </div>

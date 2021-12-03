@@ -30,7 +30,7 @@ For the UI, which is currently not working properly, you can go to localhost:300
 ** This section is for developers who wish to contribute to this project **
 At the root of the source tree, you have two files this README.md and docker-compose.yml files. Rest of the source are organized into directories. The deploymet folder has all the dockerfiles. Currently it has four dockerfiles.
 
-_shrine_app/deployment_
+_./deployment_
 shrine_mysql - This picks the official Oracle's mysql image. The original initialization script has been modified to load initial schema required for shrines fastapi module. The changes are done such that user can specify the sql file to load through environment variable.
 
 shrine_fastapi - This is the backend fastapi framework. This picks a popular public fastapi hello world image, asdkant/fastapi-hello-world and builds on top of that image. It installs the required dependencies for sqlalchemy and the python mysql connector. It also installs the nmap module, which checks for the dependent mysql database before starting the fastapi service.
@@ -39,13 +39,13 @@ shrine_react - Some more work needs to be done here.
 
 shrine_pytest - Pytest is a popular python unit test module, which is used to test the fastapi's REST interfaces. As of now just one test is functional and more tests needs to be added.
 
-_shrine_app/backend_
+_./backend_
 This folder has the app files needed for the fastapi application.
 
-_shrine_app/frontend_
+_./frontend_
 This folder will have the files needed for the react application. This is still WIP.
 
-_shrine_app/tools_
+_./tools_
 This folder has the generic tools needed for all the services. As of now we have a tool which checks if a given host has a port open. This is used by the fastapi container to check if mysql is up and running before fastapi starts and similarly, used by the pytest app to check if fastapi is up and running. Similar check will be required by the react app.
 
 
