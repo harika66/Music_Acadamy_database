@@ -5,7 +5,8 @@ RUN pip3 install --no-cache-dir \
         pytest \
         pytest-cov \
         requests \
-        jsonpath
+        jsonpath \
+        names
 
 RUN apk update && \
     apk upgrade && \
