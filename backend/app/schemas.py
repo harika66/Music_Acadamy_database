@@ -1,16 +1,17 @@
 from typing import List
 from pydantic import BaseModel
+from sqlalchemy.sql.sqltypes import Boolean
 
 class UserInfoBase(BaseModel):
-    std_name: str
-    course_name: str
-    batch: str
-    tch_name: str
-    fees: int 
+    is_student:bool
+    is_teacher:bool
+    name: str
+    email: str
+    phone: str
 
 
 class UserInfo(UserInfoBase):
-    std_id: int
+    user_id:int
 
     class Config:
         orm_mode = True

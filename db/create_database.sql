@@ -13,18 +13,76 @@ USE `Student` ;
 --
 
 DROP TABLE IF EXISTS `student_info`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `student_info` (
+
+/* CREATE TABLE `student_info` (
   `std_id` int NOT NULL AUTO_INCREMENT,
   `std_name` varchar(100) DEFAULT NULL,
-  `course_name` varchar(100) DEFAULT NULL,
-  `batch` varchar(25) DEFAULT NULL,
-  `tch_name` varchar(100) DEFAULT NULL,
-  `fees` int DEFAULT NULL,
   PRIMARY KEY (`std_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
+CREATE TABLE `teacher_info` (
+  `teacher_id` int NOT NULL AUTO_INCREMENT,
+  `teacher_name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`teacher_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dump completed on 2021-11-18 18:11:03
+CREATE TABLE `course_info` (
+  `course_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `fees` int,
+  PRIMARY KEY (`course_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `batch_info` (
+  `count` int,
+  `time` time DEFAULT NULL,
+  `stu_id` int,
+  `teacher_id` int,
+  `course_id` int,
+  FOREIGN KEY(stu_id) REFERENCES student_info(std_id),
+  FOREIGN KEY(teacher_id) REFERENCES teacher_info(teacher_id),
+  FOREIGN KEY(course_id) REFERENCES course_info(course_id)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `student_email_info` (
+  `stu_id` int,
+  `email` varchar(100) DEFAULT NULL,
+  FOREIGN KEY(stu_id) REFERENCES student_info(std_id)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `teacher_email_info` (
+  `teacher_id` int,
+  `email` varchar(100) DEFAULT NULL,
+  FOREIGN KEY(teacher_id) REFERENCES teacher_info(teacher_id)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `student_phone_info` (
+  `stu_id` int,
+  `phone` bigint,
+  FOREIGN KEY(stu_id) REFERENCES student_info(std_id)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `teacher_phone_info` (
+  `teacher_id` int,
+  `phone` bigint,
+  FOREIGN KEY(teacher_id) REFERENCES teacher_info(teacher_id)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci; */
+
+ CREATE TABLE `user_info` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `is_student` boolean,
+  `is_teacher` boolean,
+  `name` varchar(200) NOT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `phone` varchar(15),
+   PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci; 
+
+CREATE TABLE `course_info` (
+  `course_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `name` varchar(200) DEFAULT NULL,
+  `fees` int,
+   PRIMARY KEY (`course_id`),
+   FOREIGN KEY(user_id) REFERENCES user_info(user_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci; 
