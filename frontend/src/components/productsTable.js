@@ -46,12 +46,12 @@ const ProductsTable = () => {
             <Table striped bordered hover>
 				<thead>
 					<tr>
-						<th>Std Id</th>
-						<th>Student Name</th>
-						<th>Course Name</th>
-						<th>Batch</th>
-						<th>Teacher Name</th>
-						<th>Fees</th>
+						<th>User Id</th>
+						<th>Is Student</th>
+						<th>Is Teacher</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Phone</th>
 					</tr>
 				</thead>
                 <tbody>
@@ -67,12 +67,12 @@ const ProductsTable = () => {
 
 
                             <tr>
-                                <td>{product.std_id}</td>
-                                <td>{product.std_name}</td>
-                                <td>{product.course_name}</td>
-                                <td>{product.batch}</td>
-                                <td>{product.tch_name}</td>
-                                <td>{product.fees}</td>
+                                <td>{product.user_id}</td>
+                                <td>{product.is_teacher}</td>
+                                <td>{product.is_student}</td>
+                                <td>{product.name}</td>
+                                <td>{product.email}</td>
+                                <td>{product.phone}</td>
                                 <td>
                                 <button className = "btn btn-outline-info btn-sm ml-1 mr-2">Delete</button>
                                 </td>
