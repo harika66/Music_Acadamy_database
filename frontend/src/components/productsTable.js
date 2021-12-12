@@ -68,8 +68,8 @@ const ProductsTable = () => {
 
                             <tr>
                                 <td>{product.user_id}</td>
-                                <td>{product.is_teacher}</td>
-                                <td>{product.is_student}</td>
+                                <td>{product.is_teacher.toString()}</td>
+                                <td>{product.is_student.toString()}</td>
                                 <td>{product.name}</td>
                                 <td>{product.email}</td>
                                 <td>{product.phone}</td>
